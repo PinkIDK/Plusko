@@ -25,6 +25,7 @@ namespace IPTray
             // kontextové menu
             trayMenu = new ContextMenuStrip();
             trayMenu.Items.Add("Nastavit IP 192.168.0.51", null, SetStaticIP_Click);
+            trayMenu.Items.Add("Otevřít", null,{Form1 form = new Form1();form.Show();});
             trayMenu.Items.Add("Přepnout na DHCP", null, SetDHCP_Click);
             trayMenu.Items.Add(new ToolStripSeparator());
             trayMenu.Items.Add("Ukončit", null, Exit_Click);
@@ -45,6 +46,15 @@ namespace IPTray
 
             RunCmd(cmd);
             trayIcon.ShowBalloonTip(2000, "IP Switcher", "IP nastavena na 192.168.0.51", ToolTipIcon.Info);
+        }
+
+
+ // statická IP 192.168.0.51
+        private void Form_Click(object sender, EventArgs e)
+        {
+        this.Show();
+        this.WindowState = FormWindowState.Normal;
+        this.BringToFront();
         }
 
         // DHCP
@@ -87,4 +97,5 @@ namespace IPTray
             base.OnFormClosing(e);
         }
     }
+
 }
